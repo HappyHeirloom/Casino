@@ -1,4 +1,16 @@
 <?php
-$mysqli = mysqli_connect('127.0.0.1','root','','casino') or die("Database fejl, kontakt os venligst angående dette");
-mysqli_set_charset($mysqli, "utf8");
+/* Database credentials. Assuming you are running MySQL
+server with default setting (user 'root' with no password) */
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'casino');
+
+/* Attempt to connect to MySQL database */
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+// Check connection
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
 ?>
