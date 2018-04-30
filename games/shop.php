@@ -1,13 +1,8 @@
 <?php
-// Initialize the session
-session_start();
-
-// If session variable is not set it will redirect to login page
-if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
-  header("location: login.php");
-  exit;
-}
+include_once("../import.php");
+echo $coins;
 ?>
+
 
 <html>
 <head>
@@ -24,7 +19,8 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 </head>
 <body>
 
-<h1>Hi, <b><?php echo $_SESSION['username'] ?></b> </h1>
+<h1 class="rainbow-text" style="font-size:30x; text-align:left; padding-top:50px; position:absolute;">Hi, <b><?php echo $_SESSION['username'] ?></b> </h1>
+
 
 
   <header>

@@ -1,6 +1,5 @@
 <?php
 include_once("../import.php");
-echo $coins;
 ?>
 
 <html>
@@ -22,7 +21,7 @@ echo $coins;
 </head>
 <body>
 
-<h1>Hi, <b><?php echo $_SESSION['username'] ?></b> </h1>
+<h1 class="rainbow-text" style="font-size:30x; text-align:left; padding-top:50px; position:absolute;">Hi, <b><?php echo $_SESSION['username'] ?></b> </h1>
 <h1 class="rainbow-text" style="font-size:50px; text-align:center; padding-top:50px;"> Roulette </h1>
 
 
@@ -74,14 +73,7 @@ var user_coins = parseInt(<?php echo $coins ?>);
 
 $("#coins").html("coins: "+parseInt(user_coins));
 
-$(document).ready(function(){
-	var old_coins = parseInt(getCookie("coins"));
-	if(old_coins != 0) {
-		user_coins = parseInt(old_coins);
-		console.log(old_coins+" recovered from cookies");
-		updateCoins();
-	}
-});
+
 
 var active = false;
 $(".button").click(function(){
@@ -110,14 +102,17 @@ var number = Math.floor(Math.random() * (14 - 0 +1)) + 0;
 if(number == 0) {
 	if (bet_amountgreen > 0) {
 		user_coins = parseInt(user_coins) + parseInt((bet_amountgreen*14));
+		updateDatabaseCoins(user_coins);		
 		updateCoins();
 	}
 	if (bet_amountred > 0) {
 		user_coins = parseInt(user_coins) - parseInt(bet_amountred);
+		updateDatabaseCoins(user_coins);		
 		updateCoins();
 	}
 	if (bet_amountblack > 0) {
 		user_coins = parseInt(user_coins) - parseInt(bet_amountblack);
+		updateDatabaseCoins(user_coins);		
 		updateCoins();
 	}
 	return greenme();
@@ -125,14 +120,17 @@ if(number == 0) {
 if(number > 0 && number <= 7) {
 	if (bet_amountgreen > 0) {
 		user_coins = parseInt(user_coins) - parseInt(bet_amountgreen);
+		updateDatabaseCoins(user_coins);		
 		updateCoins();
 	}
 	if (bet_amountred > 0) {
 		user_coins = parseInt(user_coins) + parseInt(bet_amountred);
+		updateDatabaseCoins(user_coins);		
 		updateCoins();
 	}
 	if (bet_amountblack > 0) {
 		user_coins = parseInt(user_coins) - parseInt(bet_amountblack);
+		updateDatabaseCoins(user_coins);		
 		updateCoins();
 	}
 	return redme();
@@ -140,14 +138,17 @@ if(number > 0 && number <= 7) {
 if(number > 7 && number <= 14) {
 	if (bet_amountgreen > 0) {
 		user_coins = parseInt(user_coins) - parseInt(bet_amountgreen);
+		updateDatabaseCoins(user_coins);		
 		updateCoins();
 	}
 	if (bet_amountred > 0) {
 		user_coins = parseInt(user_coins) - parseInt(bet_amountred);
+		updateDatabaseCoins(user_coins);				
 		updateCoins();
 	}
 	if (bet_amountblack > 0) {
 		user_coins = parseInt(user_coins) + parseInt(bet_amountblack);
+		updateDatabaseCoins(user_coins);		
 		updateCoins();
 	}
 	return blackme();
@@ -185,25 +186,10 @@ window.setInterval(function(){
   updateCoins();
 }, 1000);
 
-$(document).ready(function(){
-	var old_coins = parseInt(getCookie("coins")); // NAN7
-	if(old_coins > 0) {
-		user_coins = parseInt(old_coins);
-		updateCoins();
-	}else {
-		user_coins = 50;
-	}
-});
-
 function updateCoins() {
 		$("#coins").html("coins: "+user_coins);
-		var d = new Date();
-		d.setTime(d.getTime() + (10*24*60*60*1000));
-		var expires = "expires="+ d.toUTCString();
-		document.cookie = "coins=" + user_coins + ";" + expires;
 		user_coins = user_coins;
 
-		updateDatabaseCoins(user_coins);
 		//console.log("updated balance. Cookie saved at "+user_coins);
 }
 
@@ -219,21 +205,6 @@ function updateDatabaseCoins(amount) {
 	});
 }
 
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
 
 
 	/*var counter = setInterval(function() {

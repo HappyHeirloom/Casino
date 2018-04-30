@@ -1,12 +1,5 @@
 <?php
-// Initialize the session
-session_start();
-
-// If session variable is not set it will redirect to login page
-if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
-  header("location: login.php");
-  exit;
-}
+include_once("import.php");
 ?>
 
 <html>
@@ -15,14 +8,19 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" type="text/css" href="style.css"/>
+  <link rel="stylesheet" type="text/css" href="rainbow.css"/>	
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
   <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
   <script src="js/modernizr.js"></script> <!-- Modernizr -->
+
+
 </head>
 <body>
 
-<h1>Hi, <b><?php echo $_SESSION['username'] ?></b> </h1>
+<p><a href="logout.php" class="logout">Sign Out of Your Account</a></p>
+
+<h1 class="rainbow-text" style="font-size:30x; text-align:left; padding-top:50px; position:absolute;">Hi, <b><?php echo $_SESSION['username'] ?></b> </h1>
 <h1 style="color:white; font-size:50px; text-align:center; padding-top:10px;"> Home </h1>
 
   <header>
