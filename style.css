@@ -1,0 +1,10 @@
+#logout{
+    padding-top: 0.5%;
+}
+
+.logout{
+    display: block;
+    border-radius: 50%;
+    background-color: red;
+    font-size: 14px;
+}

@@ -15,7 +15,9 @@ include_once("../import.php");
 </head>
 <body>
 
-<h1 class="rainbow-text" style="font-size:30x; text-align:left; padding-top:50px; position:absolute;">Hi, <b><?php echo $_SESSION['username'] ?></b> </h1>
+<p><a href="../logout.php" class="logout">Sign Out of Your Account</a></p>
+
+<h1 class="rainbow-text" style="font-size:40px; text-align:left; padding-top:50px; position:absolute;">Hi, <b><?php echo $_SESSION['username'] ?></b> </h1>
 <h1 class="rainbow-text" style="color:white; font-size:50px; text-align:center; padding-top:50px;"> Coinflip </h1>
 
 	<div class="bigwrapper">
