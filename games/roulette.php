@@ -1,7 +1,12 @@
 <?php
+// Initialize the session
+session_start();
 
-include_once("../db/db.php");
-
+// If session variable is not set it will redirect to login page
+if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
+  header("location: login.php");
+  exit;
+}
 ?>
 
 <html>
@@ -23,6 +28,7 @@ include_once("../db/db.php");
 </head>
 <body>
 
+<h1>Hi, <b><?php echo $_SESSION['username'] ?></b> </h1>
 <h1 class="rainbow-text" style="font-size:50px; text-align:center; padding-top:50px;"> Roulette </h1>
 
 
@@ -51,10 +57,10 @@ include_once("../db/db.php");
   		</a>
 
   		<ul>
-  			<li><a href="../index.html"><span>Home</span></a></li>
-  			<li><a href="./roulette.html" class="active"><span>Roulette</span></a></li>
-  			<li><a href="./coin.html"><span>Coin flip</span></a></li>
-  			<li><a href="./wheel.html"><span>Wheel of fortune</span></a></li>
+  			<li><a href="../index.php"><span>Home</span></a></li>
+  			<li><a href="./roulette.php" class="active"><span>Roulette</span></a></li>
+  			<li><a href="./coin.php"><span>Coin flip</span></a></li>
+  			<li><a href="./shop.php"><span>Shop</span></a></li>
   			<!-- <li><a href="#0"><span>Contact</span></a></li> -->
   		</ul>
 
