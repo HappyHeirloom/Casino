@@ -1,12 +1,6 @@
 <?php
-// Initialize the session
-session_start();
-
-// If session variable is not set it will redirect to login page
-if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
-  header("location: login.php");
-  exit;
-}
+include_once("../import.php");
+echo $coins;
 ?>
 
 <html>
@@ -76,7 +70,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 var bet_amountgreen;
 var bet_amountred;
 var bet_amountblack;
-var user_coins = parseInt(50);
+var user_coins = parseInt(<?php echo $coins ?>);
 
 $("#coins").html("coins: "+parseInt(user_coins));
 
@@ -209,7 +203,20 @@ function updateCoins() {
 		document.cookie = "coins=" + user_coins + ";" + expires;
 		user_coins = user_coins;
 
+		updateDatabaseCoins(user_coins);
 		//console.log("updated balance. Cookie saved at "+user_coins);
+}
+
+function updateDatabaseCoins(amount) {
+	$.ajax(
+	{
+		type:"POST",
+		crossdomain: true,
+		url: '../ajax.php',
+		data: {updatecoins:true, updateamount: amount}
+	}).done((response) => {
+		console.log(response);
+	});
 }
 
 function getCookie(cname) {
