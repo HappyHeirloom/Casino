@@ -18,11 +18,16 @@ include_once("import.php");
 </head>
 <body>
 
-<div id="logout">
-	<button class="logout"> <a href="logout.php">Log out</a></p> </button>
+<div id="topbar">
+	<div id="logout" style="float:left;">
+		<button class="logout"> <a href="logout.php">Log out</a></p> </button>
+	</div>
+
+	<div id="user">
+		<h1 class="rainbow-text">Hello <b><?php echo $_SESSION['username'] ?>!</b> </h1>
+	</div>
 </div>
 
-<h1 class="rainbow-text" style="font-size:40px; text-align:left; padding-top:10px; position:absolute;">Hello <b><?php echo $_SESSION['username'] ?>!</b> </h1>
 <h1 style="color:white; font-size:50px; text-align:center; padding-top:10px;"> Home </h1>
 
   <header>
