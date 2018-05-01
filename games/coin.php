@@ -24,14 +24,16 @@ include_once("../import.php");
 		<div class="coinbetwrap">
 			<div class="coins" id="coins">
 			</div>
-			<input type="integer" id="amounthead" placeholder="Enter your bet on HEADS" value="0" />
-			<input type="integer" id="amounttail" placeholder="Enter your bet on TAILS " value="0" />
+			<input type="integer" id="amounthead" placeholder="Enter your bet on HEADS" />
+			<input type="integer" id="amounttail" placeholder="Enter your bet on TAILS " />
 		</div>
 
 		<div class="wrapper">
 			<a href="#"><div class="button restoreani" id="start_game">
 			ROLL
 			</div></a>
+			<p> LAST NUMBER AND RESULT </p>
+			<input style="text-align:center;" type="string" id="randomamount" disabled="disabled"/>
 		</div>
 		<button id="clear"> clear history </button>
 		<!-- <button id="autoscroll"> Toggle Autoscroll </button> -->
@@ -85,37 +87,43 @@ $("#start_game").on("click",function() {
 });
 
 function flipCoin(bet_amount) {
+	$('#randomamount').val('');
+	let result;
 	bet_amounthead = $("#amounthead").val();
 	bet_amounttail = $("#amounttail").val();
-	if (Math.random() >= 0.5) { //heads
-		if(bet_amounttail >= 0){
+	let random = Math.random().toFixed(1);
+
+	if(random <= 0.49){ //HEADS
+		if(bet_amounthead > 0){
+			user_coins += parseInt(bet_amounthead);	
+			logMatch("WON", bet_amounthead);
+			}
+		if(bet_amounttail > 0){
 			user_coins -= parseInt(bet_amounttail);
-			user_coins += parseInt(bet_amounthead);
-			logMatch("WIN", bet_amounthead);
 			logMatch("LOST", bet_amounttail);
-			updateDatabaseCoins(user_coins);
-			updateCoins();
-		}else {
-			user_coins += parseInt(bet_amounthead);
-			updateDatabaseCoins(user_coins);
-			updateCoins();
-			logMatch("WIN", bet_amounthead);
 		}
-	}else { // tails
-		if(bet_amounthead >= 0){
-			user_coins += parseInt(bet_amounttail);
-			user_coins -= parseInt(bet_amounthead);
-			updateDatabaseCoins(user_coins);
-			updateCoins();
-			logMatch("WIN", bet_amounttail)
-			logMatch("LOST", bet_amounthead);
-		}else{
-			user_coins -= parseInt(bet_amounthead);
-			updateDatabaseCoins(user_coins);
-			updateCoins();
-			logMatch("WIN", bet_amounttail)
-		}
+		result = "HEADS";
+		updateCoins();
+		updateDatabaseCoins(user_coins);
 	}
+
+
+	if(random >= 0.5){ //TAILS
+		if(bet_amounttail > 0){
+			user_coins += parseInt(bet_amounttail);
+			logMatch("WON", bet_amounttail);
+		}
+		if(bet_amounthead > 0){
+			user_coins -= parseInt(bet_amounthead);
+			logMatch("LOST", bet_amounthead);
+		}
+		result = "TAILS";	
+		updateCoins();
+		updateDatabaseCoins(user_coins);
+
+
+	} 
+	$('#randomamount').val($('#randomamount').val() + random + '  ' + ":" + '  ' + result);
 }
 
 /*
