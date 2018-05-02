@@ -8,6 +8,7 @@ include_once("import.php");
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" type="text/css" href="style.css"/>
+  <link rel="stylesheet" type="text/css" href="topbar.css"/>
   <link rel="stylesheet" type="text/css" href="rainbow.css"/>	
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
@@ -41,7 +42,7 @@ include_once("import.php");
   			<li><a href="./index.php" class="active"><span>Home</span></a></li>
   			<li><a href="./games/roulette.php"><span>Roulette</span></a></li>
   			<li><a href="./games/coin.php"><span>Coin flip</span></a></li>
-  			<li><a href="./games/wheel.php"><span>Shop</span></a></li>
+  			<li><a href="./games/shop.php"><span>Shop</span></a></li>
   			<!-- <li><a href="#0"><span>Contact</span></a></li> -->
   		</ul>
 

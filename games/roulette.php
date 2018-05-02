@@ -8,6 +8,7 @@ include_once("../import.php");
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" type="text/css" href="roulettestyle.css"/>
+  <link rel="stylesheet" type="text/css" href="../topbar.css"/>
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
   <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
@@ -20,10 +21,17 @@ include_once("../import.php");
 
 </head>
 <body>
+<div id="topbar">
+	<div id="logout" style="float:left;">
+		<button class="logout"> <a href="logout.php">Log out</a></p> </button>
+	</div>
 
-<p><a href="../logout.php" class="logout">Sign Out of Your Account</a></p>
+	<div id="user">
+		<h1 class="rainbow-text">Hello <b><?php echo $_SESSION['username'] ?>!</b> </h1>
+	</div>
+</div>
 
-<h1 class="rainbow-text" style="font-size:40px; text-align:left; padding-top:10px; position:absolute;">Hi, <b><?php echo $_SESSION['username'] ?></b> </h1>
+
 <h1 class="rainbow-text" style="font-size:50px; text-align:center; padding-top:50px;"> Roulette </h1>
 
 

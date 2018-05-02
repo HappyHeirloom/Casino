@@ -8,6 +8,7 @@ include_once("../import.php");
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" type="text/css" href="coinstyle.css"/>
+  <link rel="stylesheet" type="text/css" href="../topbar.css"/>  
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
   <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
@@ -15,9 +16,17 @@ include_once("../import.php");
 </head>
 <body>
 
-<p><a href="../logout.php" class="logout">Sign Out of Your Account</a></p>
+<div id="topbar">
+	<div id="logout" style="float:left;">
+		<button class="logout"> <a href="logout.php">Log out</a></p> </button>
+	</div>
 
-<h1 class="rainbow-text" style="font-size:40px; text-align:left; padding-top:50px; position:absolute;">Hi, <b><?php echo $_SESSION['username'] ?></b> </h1>
+	<div id="user">
+		<h1 class="rainbow-text">Hello <b><?php echo $_SESSION['username'] ?>!</b> </h1>
+	</div>
+</div>
+
+
 <h1 class="rainbow-text" style="color:white; font-size:50px; text-align:center; padding-top:50px;"> Coinflip </h1>
 
 	<div class="bigwrapper">
