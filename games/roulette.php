@@ -79,7 +79,7 @@ include_once("../import.php");
 var bet_amountgreen;
 var bet_amountred;
 var bet_amountblack;
-var user_coins = parseInt(<?php echo $coins ?>);
+var user_coins = parseInt(<?php echo $coins->coins ?>);
 
 $("#coins").html("coins: "+parseInt(user_coins));
 

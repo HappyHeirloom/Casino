@@ -8,7 +8,9 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
   exit;
 }
 
-$load_coins_query = mysqli_query($link,"SELECT coins FROM users WHERE username='$_SESSION[username]'");
-$coins = mysqli_fetch_object($load_coins_query)->coins;
+$load_coins_query = mysqli_query($link,"SELECT coins, Acoins FROM users WHERE username='$_SESSION[username]'");
+$coins = mysqli_fetch_object($load_coins_query);
+
+
 
 ?>

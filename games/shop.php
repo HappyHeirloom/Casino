@@ -8,6 +8,7 @@ include_once("../import.php");
 	<meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../topbar.css"/>	
+  <link rel="stylesheet" type="text/css" href="../rainbow.css"/>	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.sound.js"></script>
@@ -29,8 +30,15 @@ include_once("../import.php");
 	</div>
 </div>
 
-<h1 class="rainbow-text" style="font-size:30x; text-align:left; padding-top:50px; position:absolute;">Hi, <b><?php echo $_SESSION['username'] ?></b> </h1>
+<h1 class="rainbow-text" style="color:white; font-size:50px; text-align:center; padding-top:50px;"> Shop </h1>
 
+
+<div class="bigwrapper">
+	<div class="coinbetwrap">
+	<div class="coins" id="coins">
+	</div>
+	</div>
+</div>
 
 
   <header>
@@ -40,11 +48,12 @@ include_once("../import.php");
   			<span aria-hidden="true"></span>
   		</a>
 
+
   		<ul>
   			<li><a href="../index.php"><span>Home</span></a></li>
   			<li><a href="./roulette.php"><span>Roulette</span></a></li>
   			<li><a href="./coin.php"><span>Coin flip</span></a></li>
-  			<li><a href="./wheel.php" class="active"><span>Wheel of fortune</span></a></li>
+  			<li><a href="./shop.php" class="active"><span>shop</span></a></li>
   			<!-- <li><a href="#0"><span>Contact</span></a></li> -->
   		</ul>
 
@@ -53,8 +62,80 @@ include_once("../import.php");
   </header>
 
 
+<div id="shop">
+	<div id="item1">
+	<img onclick="buy()" class="coinimg" src="../coin.png"/>
+	</div>
+</div>
+
+
+
+
 <script src="js/jquery-2.1.4.js"></script>
 <script src="js/main.js"></script> <!-- Resource jQuery -->
+
+
+<script>
+let coincounter = <?php echo $coins->Acoins?>;
+let a_coins = <?php echo $coins->Acoins?>;
+
+let user_coins = <?php echo $coins->coins ?>;
+$("#coins").html("coins: "+parseInt(user_coins));
+
+
+function buy(){
+	coincounter += 1;
+	a_coins = coincounter;
+}
+
+function addCoins(){
+	user_coins += coincounter;
+
+}
+
+
+window.setInterval(function(){
+	if (coincounter > 0){
+		addCoins();
+  	updateCoins();
+		updateDatabaseCoins(user_coins);
+		updateDatabase_a_Coins(a_coins);
+	}
+}, 10000);
+
+
+function updateCoins() {
+		$("#coins").html("coins: "+parseInt(user_coins));
+		user_coins = parseInt(user_coins);
+
+		/* console.log("updated balance. Cookie saved at "+user_coins); */
+}
+
+function updateDatabaseCoins(amount) {
+	$.ajax(
+	{
+		type:"POST",
+		crossdomain: true,
+		url: '../ajax.php',
+		data: {updatecoins:true, updateamount: amount}
+	}).done((response) => {
+		console.log(response);
+	});
+}
+function updateDatabase_a_Coins(amount) {
+	$.ajax(
+	{
+		type:"POST",
+		crossdomain: true,
+		url: '../ajax.php',
+		data: {update_A_coins:true, updateamount: amount}
+	}).done((response) => {
+		console.log(response);
+	});
+}
+
+</script>
+
 
 </body>
 </html>

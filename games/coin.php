@@ -77,7 +77,7 @@ include_once("../import.php");
 <script>
 var bet_amounthead;
 var bet_amounttail;
-var user_coins = <?php echo $coins ?>;
+var user_coins = <?php echo $coins->coins ?>;
 
 
 $("#coins").html("coins: "+parseInt(user_coins));
