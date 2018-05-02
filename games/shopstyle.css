@@ -57,3 +57,10 @@
   position: static;
   margin:0 auto;
 }
+
+.price{
+  text-align:center;
+  display: block;
+  position: static;
+  margin:0 auto;
+}

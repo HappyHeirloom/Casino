@@ -65,6 +65,7 @@ include_once("../import.php");
 <div id="shop">
 	<div id="item1">
 	<img onclick="buy()" class="coinimg" src="../coin.png"/>
+	<input class="price" type="string" id="price" disabled="disabled"/>
 	</div>
 </div>
 
@@ -76,30 +77,43 @@ include_once("../import.php");
 
 
 <script>
-let coincounter = <?php echo $coins->Acoins?>;
 let a_coins = <?php echo $coins->Acoins?>;
+let price = <?php echo $coins->coinPrice?>;
 
 let user_coins = <?php echo $coins->coins ?>;
 $("#coins").html("coins: "+parseInt(user_coins));
 
 
+$('#price').val($('#price').val() + ' Price: '  + price + ' ' +'coins.');
+
 function buy(){
-	coincounter += 1;
-	a_coins = coincounter;
+	if (user_coins >= price){
+		a_coins += 1;
+		user_coins -= price;
+		price *= 3.5;
+		$('#price').val('');
+		$('#price').val($('#price').val() + ' Price: '  + price + ' ' +'coins.');
+		update();
+	} else {
+		alert("NOT ENOUGH COINS")
+	}
 }
 
 function addCoins(){
-	user_coins += coincounter;
-
+	user_coins += a_coins;
 }
 
+function update(){
+	addCoins();
+  updateCoins();
+	updateDatabaseCoins(user_coins);
+	updateDatabase_a_Coins(a_coins);
+	updateDatabase_coinPrice(price);
+}
 
 window.setInterval(function(){
-	if (coincounter > 0){
-		addCoins();
-  	updateCoins();
-		updateDatabaseCoins(user_coins);
-		updateDatabase_a_Coins(a_coins);
+	if (a_coins > 0){
+	update();
 	}
 }, 10000);
 
@@ -129,6 +143,17 @@ function updateDatabase_a_Coins(amount) {
 		crossdomain: true,
 		url: '../ajax.php',
 		data: {update_A_coins:true, updateamount: amount}
+	}).done((response) => {
+		console.log(response);
+	});
+}
+function updateDatabase_coinPrice(amount) {
+	$.ajax(
+	{
+		type:"POST",
+		crossdomain: true,
+		url: '../ajax.php',
+		data: {updatecoinprice:true, updateamount: amount}
 	}).done((response) => {
 		console.log(response);
 	});
