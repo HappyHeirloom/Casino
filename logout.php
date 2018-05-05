@@ -1,3 +1,4 @@
+<!-- Lavet med hjælp fra https://gist.github.com/HoangPV/f57143e52a2b49ca9a407508d9a0c76e -->
 <?php
 // Initialize the session
 session_start();

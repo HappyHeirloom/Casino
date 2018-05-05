@@ -1,3 +1,4 @@
+<!-- Lavet med hjælp fra https://gist.github.com/HoangPV/f57143e52a2b49ca9a407508d9a0c76e -->
 <?php
 // Include config file
 require_once '/db/db.php';
@@ -75,6 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
+<!-- Lavet med hjælp fra https://gist.github.com/HoangPV/f57143e52a2b49ca9a407508d9a0c76e -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
