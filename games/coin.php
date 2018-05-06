@@ -62,7 +62,7 @@ include_once("../import.php");
   			<li><a href="../index.php"><span>Home</span></a></li>
   			<li><a href="./roulette.php"><span>Roulette</span></a></li>
   			<li><a href="./coin.php" class="active"><span>Coin flip</span></a></li>
-  			<li><a href="./wheel.php"><span>Shop</span></a></li>
+  			<li><a href="./shop.php"><span>Shop</span></a></li>
   			<!-- <li><a href="#0"><span>Contact</span></a></li> -->
   		</ul>
 
