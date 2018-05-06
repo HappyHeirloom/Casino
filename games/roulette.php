@@ -23,7 +23,7 @@ include_once("../import.php");
 <body>
 <div id="topbar">
 	<div id="logout" style="float:left;">
-		<button class="logout"> <a href="logout.php">Log out</a></p> </button>
+		<button class="logout"> <a href="../logout.php">Log out</a></p> </button>
 	</div>
 
 	<div id="user">
