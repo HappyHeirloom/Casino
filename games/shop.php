@@ -95,7 +95,7 @@ function buy(){
 		$('#price').val($('#price').val() + ' Price: '  + price + ' ' +'coins.');
 		update();
 	} else {
-		alert("NOT ENOUGH COINS")
+		alert("NOT ENOUGH COINS");
 	}
 }
 
